@@ -3,6 +3,8 @@ package handlers
 import (
 	"encoding/json"
 	"net/http"
+
+	"github.com/pellison512/viewfinder/server/helpers/v2"
 )
 
 type WindowInfoReq struct {
@@ -17,6 +19,6 @@ func Windows(w http.ResponseWriter, req *http.Request) {
 
 	var winInfoReq WindowInfoReq
 	if err := json.NewDecoder(req.Body).Decode(&winInfoReq); err != nil {
-		helpers.writeErrResponse(w, err, "error unmarshalling json", http.StatusBadRequest)
+		helpers.WriteErrResponse(w, err, "error unmarshalling json", http.StatusBadRequest)
 	}
 }

@@ -5,6 +5,6 @@ import (
 	"net/http"
 )
 
-func writeErrResponse(w http.ResponseWriter, err error, errStr string, status int) {
+func WriteErrResponse(w http.ResponseWriter, err error, errStr string, status int) {
 	http.Error(w, fmt.Sprintf("%s: :%v", errStr, err), status)
 }
