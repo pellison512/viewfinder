@@ -20,10 +20,11 @@ type WindowInfoReq struct {
 	Bottom     int    `json:"bottom"`
 }
 
-func PostWindowsHandler(w http.ResponseWriter, req *http.Request) {
+func(handler *WindowsHandler) PostWindowsHandler(w http.ResponseWriter, req *http.Request) {
 
 	var winInfoReq WindowInfoReq
 	if err := json.NewDecoder(req.Body).Decode(&winInfoReq); err != nil {
 		helpers.WriteErrResponse(w, err, "error unmarshalling json", http.StatusBadRequest)
 	}
+	//handler.dataSvc.
 }
