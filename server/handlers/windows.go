@@ -4,8 +4,13 @@ import (
 	"encoding/json"
 	"net/http"
 
+	data "github.com/pellison512/viewfinder/server/data/v2"
 	"github.com/pellison512/viewfinder/server/helpers/v2"
 )
+
+type WindowsHandler struct {
+	dataSvc data.Data
+}
 
 type WindowInfoReq struct {
 	WindowText string `json:"windowText"`
