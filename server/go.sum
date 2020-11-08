@@ -1,0 +1,3 @@
+github.com/pellison512/viewfinder v0.0.0-20201108044217-62fd3330887d h1:XalArszzaaK5XRJj9HgdVKzdciyre5hs1VQch8/cIL4=
+github.com/pellison512/viewfinder/server/handlers/v2 v2.0.0-20201108044217-62fd3330887d h1:qGJNFv5r0Eq3yDlOk3RhMOW6SE85BRv5bSa6YGZg8WM=
+github.com/pellison512/viewfinder/server/handlers/v2 v2.0.0-20201108044217-62fd3330887d/go.mod h1:hwndDnXSB8iqvWAuLkJBSrW36knYJoJE1dzOB1OLpSA=
