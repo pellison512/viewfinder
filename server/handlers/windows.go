@@ -15,7 +15,7 @@ type WindowInfoReq struct {
 	Bottom     int    `json:"bottom"`
 }
 
-func Windows(w http.ResponseWriter, req *http.Request) {
+func PostWindowsHandler(w http.ResponseWriter, req *http.Request) {
 
 	var winInfoReq WindowInfoReq
 	if err := json.NewDecoder(req.Body).Decode(&winInfoReq); err != nil {
