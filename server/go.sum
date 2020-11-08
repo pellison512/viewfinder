@@ -1,5 +1,6 @@
 github.com/gorilla/mux v1.8.0 h1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI=
 github.com/gorilla/mux v1.8.0/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB71So=
 github.com/pellison512/viewfinder v0.0.0-20201108044217-62fd3330887d h1:XalArszzaaK5XRJj9HgdVKzdciyre5hs1VQch8/cIL4=
+github.com/pellison512/viewfinder v0.0.0-20201108083957-9e863abd7804 h1:rp+zEoqL4LTeVk84rYxmRO2f7fkf0K/WfyUXRwe/MlQ=
 github.com/pellison512/viewfinder/server/handlers/v2 v2.0.0-20201108044217-62fd3330887d h1:qGJNFv5r0Eq3yDlOk3RhMOW6SE85BRv5bSa6YGZg8WM=
 github.com/pellison512/viewfinder/server/handlers/v2 v2.0.0-20201108044217-62fd3330887d/go.mod h1:hwndDnXSB8iqvWAuLkJBSrW36knYJoJE1dzOB1OLpSA=
