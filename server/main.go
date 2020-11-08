@@ -10,7 +10,8 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/pellison512/viewfinder/server/handlers/v2"
+	"github.com/pellison512/viewfinder/server/data/v2"
+	handlers "github.com/pellison512/viewfinder/server/handlers/v2"
 )
 
 func main() {
@@ -18,9 +19,18 @@ func main() {
 	flag.DurationVar(&wait, "graceful-timeout", time.Second*15, "the duration for which the server gracefully wait for existing connections to finish - e.g. 15s or 1m")
 	flag.Parse()
 
+	memDataSvc := data.NewMemStoreDataSvc()
+
+	healthHanlder := handlers.NewHealthHandler()
+	windowsHandler, err := handlers.NewWindowsHandler(memDataSvc)
+	if err != nil {
+		log.Fatalf("error creating windows handler with error '%s', shutting down", err.Error())
+	}
+
 	r := mux.NewRouter()
-	r.HandleFunc("/windows", handlers.PostWindowsHandler).Methods("POST")
-	r.HandleFunc("/headers", handlers.HeadersHandler).Methods("GET")
+	r.HandleFunc("/windows", windowsHandler.POSTWindowsHandler).Methods("POST")
+	r.HandleFunc("/windows/{title}", windowsHandler.GETWindowsHandler).Methods("GET")
+	r.HandleFunc("/health", healthHanlder.HealthGETHandler).Methods("GET")
 	//	http.HandleFunc("/headers", handlers.HeadersHandler)
 	//http.HandleFunc("/windows", handlers.WindowsHandler)
 	//http.ListenAndServe(":8090", nil)

@@ -1,21 +1,26 @@
 package data
 
-type memStore struct {
-	Data map[string]WindowData 
+import "errors"
+
+type MemStore struct {
+	data map[string]WindowData
 }
 
-type WindowData struct {
-	Title  string
-	Left   int
-	Top    int   
-	Right  int
-	Bottom int
-}       
-
-func (m *memStore) StoreWindow(window WindowData) (err error) {
-	if len(m.Data) == 0 {
-		m.Data = make(map[string]WindowData)
+func NewMemStoreDataSvc() *MemStore {
+	return &MemStore{
+		data: make(map[string]WindowData),
 	}
-	m.Data[window.Title] = window
+}
+
+func (m *MemStore) StoreWindow(window WindowData) (err error) {
+	m.data[window.Title] = window
 	return nil
+}
+
+func (m *MemStore) GetWindow(windowName string) (WindowData, error) {
+	data, found := m.data[windowName]
+	if !found {
+		return WindowData{}, errors.New("no window found")
+	}
+	return data, nil
 }

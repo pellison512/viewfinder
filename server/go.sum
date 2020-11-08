@@ -4,3 +4,7 @@ github.com/pellison512/viewfinder v0.0.0-20201108044217-62fd3330887d h1:XalArszz
 github.com/pellison512/viewfinder v0.0.0-20201108083957-9e863abd7804 h1:rp+zEoqL4LTeVk84rYxmRO2f7fkf0K/WfyUXRwe/MlQ=
 github.com/pellison512/viewfinder/server/handlers/v2 v2.0.0-20201108044217-62fd3330887d h1:qGJNFv5r0Eq3yDlOk3RhMOW6SE85BRv5bSa6YGZg8WM=
 github.com/pellison512/viewfinder/server/handlers/v2 v2.0.0-20201108044217-62fd3330887d/go.mod h1:hwndDnXSB8iqvWAuLkJBSrW36knYJoJE1dzOB1OLpSA=
+github.com/pellison512/viewfinder/server/handlers/v2 v2.0.0-20201108083957-9e863abd7804 h1:ygYrIC5QFts9sFeB5dJ1Fi7vTRY+LmSaF6OjOX+u6j0=
+github.com/pellison512/viewfinder/server/handlers/v2 v2.0.0-20201108083957-9e863abd7804/go.mod h1:+zN0voRTgM2wPY5Ko+RpGvFmCxrdslmSnO1WP/2+dGY=
+github.com/pellison512/viewfinder/server/handlers/v2 v2.0.0-20201108085254-253204a8495d h1:Os3hyitVDGk7BF7SB5bwo6MqArW3CysGro4WeMdLnhw=
+github.com/pellison512/viewfinder/server/handlers/v2 v2.0.0-20201108085254-253204a8495d/go.mod h1:Rm0BjGJIIrXhANradxZedV5xOXi+6ffoB9zs/Sdje9U=
