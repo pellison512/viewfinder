@@ -1,0 +1,13 @@
+C:\Users\Patrick\source\repos\viewfinder\windows_client\ViewFinder\ViewFinder\bin\Debug\netcoreapp3.1\ViewFinder.exe
+C:\Users\Patrick\source\repos\viewfinder\windows_client\ViewFinder\ViewFinder\bin\Debug\netcoreapp3.1\ViewFinder.deps.json
+C:\Users\Patrick\source\repos\viewfinder\windows_client\ViewFinder\ViewFinder\bin\Debug\netcoreapp3.1\ViewFinder.runtimeconfig.json
+C:\Users\Patrick\source\repos\viewfinder\windows_client\ViewFinder\ViewFinder\bin\Debug\netcoreapp3.1\ViewFinder.runtimeconfig.dev.json
+C:\Users\Patrick\source\repos\viewfinder\windows_client\ViewFinder\ViewFinder\bin\Debug\netcoreapp3.1\ViewFinder.dll
+C:\Users\Patrick\source\repos\viewfinder\windows_client\ViewFinder\ViewFinder\bin\Debug\netcoreapp3.1\ViewFinder.pdb
+C:\Users\Patrick\source\repos\viewfinder\windows_client\ViewFinder\ViewFinder\obj\Debug\netcoreapp3.1\ViewFinder.csprojAssemblyReference.cache
+C:\Users\Patrick\source\repos\viewfinder\windows_client\ViewFinder\ViewFinder\obj\Debug\netcoreapp3.1\ViewFinder.AssemblyInfoInputs.cache
+C:\Users\Patrick\source\repos\viewfinder\windows_client\ViewFinder\ViewFinder\obj\Debug\netcoreapp3.1\ViewFinder.AssemblyInfo.cs
+C:\Users\Patrick\source\repos\viewfinder\windows_client\ViewFinder\ViewFinder\obj\Debug\netcoreapp3.1\ViewFinder.csproj.CoreCompileInputs.cache
+C:\Users\Patrick\source\repos\viewfinder\windows_client\ViewFinder\ViewFinder\obj\Debug\netcoreapp3.1\ViewFinder.dll
+C:\Users\Patrick\source\repos\viewfinder\windows_client\ViewFinder\ViewFinder\obj\Debug\netcoreapp3.1\ViewFinder.pdb
+C:\Users\Patrick\source\repos\viewfinder\windows_client\ViewFinder\ViewFinder\obj\Debug\netcoreapp3.1\ViewFinder.genruntimeconfig.cache
