@@ -48,12 +48,13 @@ func (handler *WindowsHandler) POSTWindowsHandler(w http.ResponseWriter, req *ht
 	w.WriteHeader(http.StatusCreated)
 }
 
-type WindowInfoResponse struct {
-	Title  string `json:"windowText,omitmepty"`
-	Left   int    `json:"left"`
-	Top    int    `json:"top"`
-	Right  int    `json:"right"`
-	Bottom int    `json:"bottom"`
+type WindowDrawingResponse struct {
+	Coordinates []Coordinate `json:"coordinates"`
+}
+
+type Coordinate struct {
+	X int `json:"x"`
+	Y int `json:"y"`
 }
 
 func (handler *WindowsHandler) GETWindowsHandler(w http.ResponseWriter, req *http.Request) {
@@ -80,6 +81,14 @@ func (handler *WindowsHandler) GETWindowsHandler(w http.ResponseWriter, req *htt
 
 	helpers.WriteJSONResponse(w, resp, http.StatusOK)
 	return
+}
+
+type WindowInfoResponse struct {
+	Title  string `json:"windowText,omitmepty"`
+	Left   int    `json:"left"`
+	Top    int    `json:"top"`
+	Right  int    `json:"right"`
+	Bottom int    `json:"bottom"`
 }
 
 func (handler *WindowsHandler) GETAllWindowsHandler(w http.ResponseWriter, req *http.Request) {

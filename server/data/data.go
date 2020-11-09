@@ -14,3 +14,12 @@ type WindowData struct {
 	Right  int
 	Bottom int
 }
+
+type Polygon struct {
+	Coordinates []Coodinate
+}
+
+type Coodinate struct {
+	X int;
+	Y int;
+}
