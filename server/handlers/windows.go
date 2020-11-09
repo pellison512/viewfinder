@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -29,30 +30,40 @@ func NewWindowsHandler(dataSvc data.DataSvc) (WindowsHandler, error) {
 
 func (handler *WindowsHandler) POSTWindowsHandler(w http.ResponseWriter, req *http.Request) {
 
-	var winInfoReq WindowInfoReq
+	var winInfoReq []WindowInfoReq
 	if err := json.NewDecoder(req.Body).Decode(&winInfoReq); err != nil {
 		helpers.WriteErrResponse(w, err, "error unmarshalling json", http.StatusBadRequest)
 	}
-	handler.dataSvc.StoreWindow(data.WindowData{
-		Title:  winInfoReq.WindowText,
-		Left:   winInfoReq.Left,
-		Top:    winInfoReq.Top,
-		Bottom: winInfoReq.Bottom,
-		Right:  winInfoReq.Right,
-	})
+	log.Printf("window Req: %+v", winInfoReq)
+	for _, winInfo := range winInfoReq {
+		handler.dataSvc.StoreWindow(data.WindowData{
+			Title:  winInfo.WindowText,
+			Left:   winInfo.Left,
+			Top:    winInfo.Top,
+			Bottom: winInfo.Bottom,
+			Right:  winInfo.Right,
+		})
+	}
 
 	w.WriteHeader(http.StatusCreated)
 }
 
 type WindowInfoResponse struct {
-	Left   int `json:"left"`
-	Top    int `json:"top"`
-	Right  int `json:"right"`
-	Bottom int `json:"bottom"`
+	Title  string `json:"windowText,omitmepty"`
+	Left   int    `json:"left"`
+	Top    int    `json:"top"`
+	Right  int    `json:"right"`
+	Bottom int    `json:"bottom"`
 }
 
 func (handler *WindowsHandler) GETWindowsHandler(w http.ResponseWriter, req *http.Request) {
 	title := mux.Vars(req)["title"]
+
+	//TODO remove all this
+	log.Printf("getting title: %s", title)
+	if title == "React App" {
+
+	}
 
 	window, err := handler.dataSvc.GetWindow(title)
 	if err != nil {
@@ -65,6 +76,29 @@ func (handler *WindowsHandler) GETWindowsHandler(w http.ResponseWriter, req *htt
 		Top:    window.Top,
 		Right:  window.Right,
 		Bottom: window.Bottom,
+	}
+
+	helpers.WriteJSONResponse(w, resp, http.StatusOK)
+	return
+}
+
+func (handler *WindowsHandler) GETAllWindowsHandler(w http.ResponseWriter, req *http.Request) {
+
+	windows, err := handler.dataSvc.GetAllWindows()
+	if err != nil {
+		//TODO hide db error message
+		helpers.WriteErrResponse(w, err, "error getting window from database", http.StatusNotFound)
+		return
+	}
+	resp := make([]WindowInfoResponse, 0)
+	for _, window := range windows {
+		resp = append(resp, WindowInfoResponse{
+			Title:  window.Title,
+			Left:   window.Left,
+			Top:    window.Top,
+			Right:  window.Right,
+			Bottom: window.Bottom,
+		})
 	}
 
 	helpers.WriteJSONResponse(w, resp, http.StatusOK)

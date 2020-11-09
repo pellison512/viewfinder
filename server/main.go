@@ -9,6 +9,7 @@ import (
 	"os/signal"
 	"time"
 
+	gorHandlers "github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/pellison512/viewfinder/server/data/v2"
 	handlers "github.com/pellison512/viewfinder/server/handlers/v2"
@@ -30,6 +31,7 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/windows", windowsHandler.POSTWindowsHandler).Methods("POST")
 	r.HandleFunc("/windows/{title}", windowsHandler.GETWindowsHandler).Methods("GET")
+	r.HandleFunc("/windows/", windowsHandler.GETAllWindowsHandler).Methods("GET")
 	r.HandleFunc("/health", healthHanlder.HealthGETHandler).Methods("GET")
 	//	http.HandleFunc("/headers", handlers.HeadersHandler)
 	//http.HandleFunc("/windows", handlers.WindowsHandler)
@@ -41,7 +43,7 @@ func main() {
 		WriteTimeout: time.Second * 15,
 		ReadTimeout:  time.Second * 15,
 		IdleTimeout:  time.Second * 60,
-		Handler:      r, // Pass our instance of gorilla/mux in.
+		Handler:      gorHandlers.LoggingHandler(os.Stdout, gorHandlers.CORS()(r)), // Pass our instance of gorilla/mux in.
 	}
 
 	// Run our server in a goroutine so that it doesn't block.

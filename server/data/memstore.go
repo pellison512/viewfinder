@@ -24,3 +24,11 @@ func (m *MemStore) GetWindow(windowName string) (WindowData, error) {
 	}
 	return data, nil
 }
+
+func (m *MemStore) GetAllWindows() ([]WindowData, error) {
+	windows := make([]WindowData, 0)
+	for _, window := range m.data {
+		windows = append(windows, window)
+	}
+	return windows, nil
+}

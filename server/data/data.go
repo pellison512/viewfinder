@@ -3,6 +3,8 @@ package data
 type DataSvc interface {
 	StoreWindow(window WindowData) (err error)
 	GetWindow(windowName string) (WindowData, error)
+	//TODO remove this after testing
+	GetAllWindows() ([]WindowData, error)
 }
 
 type WindowData struct {

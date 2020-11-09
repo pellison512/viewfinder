@@ -126,8 +126,33 @@ public struct WINDOWINFO
 public class WindowInfo
 {
 	public string WindowText;
+	public string CleanBrowserText;
 	public WINDOWINFO Info;
 	public HWND WindowHandle;
+
+	// Cleans WindowText if it finds a browser; otherwise returns WindowText
+	private string CleanBrowserWindowText()
+	{
+		//StringBuilder winText = new StringBuilder(WindowText);
+		if (this.IsBrowserWindow())
+        {
+			return this.WindowText.Substring(0, this.WindowText.ToLower().IndexOf(" - google chrome"));
+			//return this.WindowText.ToLower().Replace(" - google chrome", "");
+        }
+		return this.WindowText;
+	}
+	public WindowInfo(string windowText, WINDOWINFO info, HWND windowHandle)
+    {
+		this.WindowText = windowText;
+		this.CleanBrowserText = CleanBrowserWindowText();
+		this.Info = info;
+		this.WindowHandle = windowHandle;
+    }
+
+	public bool IsBrowserWindow()
+    {
+		return this.WindowText.ToLower().Contains(" - google chrome");
+    }
 }
 
 	public static class OpenWindowGetter
@@ -138,7 +163,7 @@ public class WindowInfo
 	public Class1()
 	{
 	}*/
-	public static IDictionary<HWND, WindowInfo> GetWindowsAboveBrowser()
+	public static IList<WindowInfo> GetWindowsAboveBrowser()
 	{
 		HWND shellWindow = GetShellWindow();
 		//Dictionary<HWND, string> windows = new Dictionary<HWND, string>();
@@ -175,13 +200,10 @@ public class WindowInfo
 			StringBuilder builder = new StringBuilder(length);
 			GetWindowText(hWnd, builder, length + 1);
 
-			WindowInfo winInfo = new WindowInfo();
-			winInfo.Info = info;
-			winInfo.WindowText = builder.ToString();
-			winInfo.WindowHandle = hWnd;
+			WindowInfo winInfo = new WindowInfo(builder.ToString(), info, hWnd);
 			allVisibleWindows.Add(winInfo);
 
-            if(builder.ToString().ToLower().Contains("chrome"))
+            if(winInfo.IsBrowserWindow())
             {
 				lastChromeZCount = counter;
             }
@@ -191,13 +213,13 @@ public class WindowInfo
 		}, 0);
 
 		//go through the visible windows and trim them to only those above the lowest chrome window
-		Dictionary<HWND, WindowInfo> windowsAboveBrowser = new Dictionary<HWND, WindowInfo>();
+		List<WindowInfo> windowsAboveBrowser = new List<WindowInfo>();
 		for (int i=0; i< allVisibleWindows.Count; i++) {
 			WindowInfo window = allVisibleWindows[i];
 			
-			if(i < lastChromeZCount)
+			if(i <= lastChromeZCount)
             {
-				windowsAboveBrowser[window.WindowHandle] = window;
+				windowsAboveBrowser.Add(window);
             }
         }
 
